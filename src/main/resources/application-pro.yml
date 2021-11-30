@@ -1,0 +1,30 @@
+spring:
+  #配置数据库连接信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///stone_blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+  #配置JPA
+  jpa:
+    hibernate:
+      #（update表示每次连接数据库，会自动检测实体类变动，并根据映射对表结构做修改）
+      ddl-auto: none
+    #输出SQL语句到控制台和日志文件
+    show-sql: true
+#配置日志
+logging:
+  level:
+    #全局级别
+    root: warn
+    #针对指定包的级别
+    com.djn: info
+  #指定日志存放位置
+  file:
+    name: stone-pro.log
+    path: log/
+#配置生产环境端口号和项目名
+server:
+  port: 8081
+  servlet:
+    context-path: /stone
