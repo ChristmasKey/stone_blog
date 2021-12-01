@@ -12,6 +12,8 @@ spring:
       ddl-auto: update
     #输出SQL语句到控制台和日志文件
     show-sql: true
+    #（关闭Spring Boot启动Warning）
+    open-in-view: false
 #配置日志
 logging:
   level:
