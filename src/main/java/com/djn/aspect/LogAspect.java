@@ -31,13 +31,18 @@ public class LogAspect {
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
 
+        //获取请求的url
         String url = request.getRequestURL().toString();
+        //获取访问者ip
         String ip = request.getRemoteAddr();
+        //获取调用方法
         String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        //获取参数
         Object[] args = joinPoint.getArgs();
 
         RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
 
+        //输出到日志
         logger.info("RequestLog : {}", requestLog);
     }
 
@@ -48,9 +53,13 @@ public class LogAspect {
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result) {
+        //将返回结果输出到日志
         logger.info("Result : {}", result);
     }
 
+    /**
+     * 存储日志信息的内部类
+     */
     private class RequestLog {
         private String url;
         private String ip;
