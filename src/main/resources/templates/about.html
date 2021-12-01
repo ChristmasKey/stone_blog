@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我</title>
+  <!-- 引入Semantic-UI的静态资源 -->
+  <link rel="stylesheet" th:href="@{/css/semantic.min.css}">
+  <link rel="stylesheet" th:href="@{/css/me.css}">
+</head>
+
+<body>
+  <!-- 导航 -->
+  <nav class="ui inverted segment attached m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+      <div class="ui inverted secondary stackable menu">
+        <!-- logo -->
+        <h2 class="ui header teal item">Stone</h2>
+        <!-- 菜单 -->
+        <a href="#" class="m-item item m-mobile-hide"><i class="small home icon "></i>首页</a>
+        <a href="#" class="m-item item m-mobile-hide"><i class="small idea icon"></i>分类</a>
+        <a href="#" class="m-item item m-mobile-hide"><i class="small tags icon"></i>标签</a>
+        <a href="#" class="m-item item m-mobile-hide"><i class="small clone icon"></i>归档</a>
+        <a href="#" class="m-item item m-mobile-hide active"><i class="small info icon"></i>关于我</a>
+        <div class="right m-item item m-mobile-hide">
+          <div class="ui icon transparent inverted input">
+            <input type="text" placeholder="Search...">
+            <i class="search icon link"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="ui black icon button m-right-top m-mobile-show menu toggle">
+      <i class="sidebar icon"></i>
+    </a>
+  </nav>
+
+  <!-- 正文 -->
+  <div class="m-container m-padded-tb-big">
+    <div class="ui container">
+      <div class="ui stackable grid">
+        <!-- 左侧图片 -->
+        <div class="eleven wide column">
+          <div class="ui segment">
+            <img src="https://picsum.photos/id/10/800/600" alt="" class="ui rounded image">
+          </div>
+        </div>
+        <!-- 右侧信息 -->
+        <div class="five wide column">
+          <!-- Title -->
+          <div class="ui top attached segment">
+            <div class="ui header">关于我</div>
+          </div>
+          <!-- 介绍 -->
+          <div class="ui attached segment">
+            <p class="m-text">JiaNanStone，一个独立开发者，折腾在0和1世界的小哥；一个终身学习者，誓将学习无限循环，希望结识可以共同成长的小伙伴。</p>
+            <p class="m-text">热爱编程，喜欢折腾，正在探索高效学习编程技术的方法...</p>
+          </div>
+          <!-- 个人标签 -->
+          <div class="ui attached segment">
+            <div class="ui orange basic left pointing label">编程</div>
+            <div class="ui orange basic left pointing label">写作</div>
+            <div class="ui orange basic left pointing label">思考</div>
+            <div class="ui orange basic left pointing label">影视</div>
+          </div>
+          <!-- 技术标签 -->
+          <div class="ui attached segment">
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">Java</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">C#</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">Python</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">JavaScript</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">Vue</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">MySQL</div>
+            <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
+          </div>
+          <!-- 链接 -->
+          <div class="ui bottom attached segment">
+            <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
+            <a class="ui circular icon button wechat"><i class="weixin icon"></i></a>
+            <a class="ui circular icon button qq" data-content="1046280246" data-position="bottom center"><i class="qq icon"></i></a>
+          </div>
+          <!-- 二维码隐藏区 -->
+          <div class="ui flowing popup transition hidden wechat-qr">
+            <img th:src="@{/img/temp.webp}" alt="" class="ui rounded image" width="110px">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <!-- 页脚 -->
+  <footer class="ui inverted segment vertical m-padded-tb-massive">
+    <div class="ui container center aligned">
+      <div class="ui divided inverted grid stackable">
+        <div class="three wide column">
+          <div class="item">
+            <img th:src="@{/img/temp.webp}" alt="二维码" class="ui rounded centered image" width="110" height="110">
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header m-text-thin m-text-spaced">最新博客</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Email: JiaNanStone@qq.com</a>
+            <a href="#" class="item">QQ: 1046280246</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header m-text-thin m-text-spaced">Blog</h4>
+          <p class="m-text-thin m-text-spaced m-opacity-mini">
+            这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这的人一些帮助...
+          </p>
+        </div>
+      </div>
+      <div class="ui inverted section divider"></div>
+      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2020-2021 StoneBlog Designed by JiaNanStone</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+  <script th:src="@{/js/semantic.min.js}"></script>
+
+  <script>
+    $('.menu.toggle').click(function () {
+      $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.qq').popup();
+    $('.wechat').popup({
+      popup: $('.wechat-qr'),
+      on: 'hover',
+      position: 'bottom center'
+    });
+  </script>
+</body>
+
+</html>
