@@ -19,10 +19,9 @@ logging:
     root: warn
     #针对指定包的级别
     com.djn: info
-  #指定日志存放位置
+  #指定日志存放路径
   file:
-    name: stone-pro.log
-    path: log/
+    name: logs/stone-pro.log
 #配置生产环境端口号和项目名
 server:
   port: 8081

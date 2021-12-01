@@ -19,10 +19,9 @@ logging:
     root: info
     #针对指定包的级别
     com.djn: debug
-  #指定日志存放位置
+  #指定日志存放路径
   file:
-    name: stone-dev.log
-    path: log/
+    name: logs/stone-dev.log
 #配置访问路径的项目名
 server:
   servlet:
