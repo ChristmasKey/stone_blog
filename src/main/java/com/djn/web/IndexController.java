@@ -20,9 +20,15 @@ public class IndexController {
         // if (blog == null) {
         //     throw new NotFoundException("博客不存在");
         // }
+
         // System.out.println("--------index--------");
         // System.out.println("--------" + id + "--------");
         // System.out.println("--------" + name + "--------");
         return "index";
+    }
+
+    @GetMapping("/blog")
+    public String toBlog() {
+        return "blog";
     }
 }
