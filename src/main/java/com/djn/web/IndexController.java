@@ -31,4 +31,15 @@ public class IndexController {
     public String toBlog() {
         return "blog";
     }
+
+    @GetMapping("/login")
+    public String toLogin() {
+        return "admin/login";
+    }
+
+
+    @GetMapping("/admin/index")
+    public String toAdminIndex() {
+        return "admin/index";
+    }
 }
