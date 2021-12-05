@@ -56,6 +56,12 @@
 <!-- 正文 -->
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
+        <!-- 操作信息提示 -->
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <p th:text="${message}">恭喜，操作成功！</p>
+        </div>
         <table class="ui table celled">
             <thead>
             <tr>
@@ -77,9 +83,9 @@
             <tfoot>
             <tr>
                 <th colspan="6">
-                    <div class="ui mini pagination menu">
-                        <a th:href="@{/admin/types(page=${page.number}-1)}" class="item">上一页</a>
-                        <a th:href="@{/admin/types(page=${page.number}+1)}" class="item">下一页</a>
+                    <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                        <a th:href="@{/admin/types(page=${page.number}-1)}" th:unless="${page.first}" class="item">上一页</a>
+                        <a th:href="@{/admin/types(page=${page.number}+1)}" th:unless="${page.last}" class="item">下一页</a>
                     </div>
                     <a th:href="@{/admin/types/input}" class="ui right floated teal basic small button">新增</a>
                 </th>
@@ -142,6 +148,10 @@
         // on: "hover",
         // action: "hide"
     });
+
+    $(".message .close").on('click', function () {
+        $(this).closest('.message').transition('fade');
+    })
 </script>
 </body>
 

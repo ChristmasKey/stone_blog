@@ -45,4 +45,11 @@ public interface TypeService {
      * @param id 分类id
      */
     void deleteType(Long id);
+
+    /**
+     * 根据name查询分类
+     * @param name 分类名称
+     * @return 分类对象
+     */
+    Type getTypeByName(String name);
 }
