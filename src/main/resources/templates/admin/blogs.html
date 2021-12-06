@@ -47,8 +47,8 @@
   <div class="ui attached pointing menu">
     <div class="ui container">
       <div class="right menu">
-        <a href="#" class="item">发布</a>
-        <a href="#" class="active teal item ">列表</a>
+        <a th:href="@{/admin/blogs/input}" class="item">发布</a>
+        <a th:href="@{/admin/blogs}" class="active teal item ">列表</a>
       </div>
     </div>
   </div>
@@ -120,11 +120,17 @@
                   <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item">上一页</a>
                   <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="item">下一页</a>
                 </div>
-                <a href="#" class="ui right floated teal basic small button">新增</a>
+                <a th:href="@{/admin/blogs/input}" class="ui right floated teal basic small button">新增</a>
               </th>
             </tr>
           </tfoot>
         </table>
+
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+          <i class="close icon"></i>
+          <div class="header">提示：</div>
+          <p th:text="${message}">恭喜，操作成功！</p>
+        </div>
       </div>
     </div>
   </div>
@@ -200,6 +206,10 @@
         page: $("[name='page']").val()
       })
     }
+
+    $(".message .close").on('click', function () {
+      $(this).closest('.message').transition('fade');
+    });
   </script>
 </body>
 
