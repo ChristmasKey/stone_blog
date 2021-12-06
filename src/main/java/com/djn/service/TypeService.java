@@ -4,12 +4,20 @@ import com.djn.pojo.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * 分类管理业务
  * @author ChristmasKey
  * @date 2021-12-04-22:47
  */
 public interface TypeService {
+
+    /**
+     * 查询所有分类
+     * @return 分类list
+     */
+    List<Type> listType();
 
     /**
      * 新增分类

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 分类管理业务实现
@@ -22,6 +23,11 @@ public class TypeServiceImpl implements TypeService {
 
     @Resource
     private TypeRepository typeRepository;
+
+    @Override
+    public List<Type> listType() {
+        return typeRepository.findAll();
+    }
 
     @Override
     public Type saveType(Type type) {
