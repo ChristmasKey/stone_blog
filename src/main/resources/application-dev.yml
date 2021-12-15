@@ -5,6 +5,19 @@ spring:
     url: jdbc:mysql:///stone_blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: 1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid数据源专有配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 5
+    maxWait: 20
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
   #配置JPA
   jpa:
     hibernate:
