@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments::head(~{::title})">
+<head>
     <meta charset="UTF-8">
-    <title>博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>404</title>
+    <link rel="icon" th:href="@{/img/stone.png}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/me.css}">
 </head>
 <body>
-<!-- 导航 -->
-<nav th:replace="_fragments::menu(0)"></nav>
-
-<br><br><br><br><br>
-<div class="m-container-small m-padded-tb-massive">
-    <div class="ui error message m-padded-tb-massive">
-        <div class="ui container center aligned">
-            <h2>404</h2>
-            <p>对不起，你访问的资源不存在</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <span style="font-size: 200px;">404</span>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-emoji-dizzy" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                </svg>
+                <span class="align-middle">非常抱歉，要访问的页面没找到。。。。。。</span>
+            </p>
         </div>
     </div>
 </div>
-<br><br><br><br><br>
-
-<!-- 页脚 -->
-<footer th:replace="_fragments::footer"></footer>
 </body>
 </html>

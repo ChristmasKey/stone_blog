@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:fragment="common_css">
+        <link rel="icon" th:href="@{/img/stone.png}">
+        <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/bootstrap/me.css}">
+    </th:block>
+</head>
+<body>
+
+<th:block th:fragment="common_script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
+</th:block>
+</body>
+</html>

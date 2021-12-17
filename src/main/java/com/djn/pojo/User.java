@@ -3,36 +3,35 @@ package com.djn.pojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * 用户 实体类
+ * 后台用户
  * @author ChristmasKey
- * @date 2021-12-03-14:17
+ * @date 2021-12-16-21:20
  */
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "t_user")
 public class User {
 
-    @Id
-    @GeneratedValue
-    private Long id; //编号
-    private String nickName; //昵称
-    private String username; //用户名
-    private String password; //密码
-    private String email; //邮箱
-    private String avatar; //头像
-    private Integer type; //用户类型
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createTime; //用户创建时间
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateTime; //用户修改时间
+    private Integer id;//编号
+    private String username;//用户名
+    private String password;//密码
+    private String nickname;//昵称
+    private String email;//邮箱
+    private String avatar;//头像
+    private Integer type;//用户类型：0(root),1(admin),2(publisher)
+    private Date createTime;//创建时间
+    private Date updateTime;//修改时间
+    private String introduce;//自我介绍
+    //四个兴趣爱好
+    private String hobby1;
+    private String hobby2;
+    private String hobby3;
+    private String hobby4;
+    private String personalTags;//个人标签
 
-    @OneToMany(mappedBy = "user")
-    private List<Blog> blogs = new ArrayList<>();
+    private List<Blog> blogs;//博客列表
+    private List<Tag> tags;//标签列表
 }

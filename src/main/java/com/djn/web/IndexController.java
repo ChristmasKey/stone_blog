@@ -1,9 +1,6 @@
 package com.djn.web;
 
-import com.djn.exception.NotFoundException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @author ChristmasKey
@@ -11,35 +8,4 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 @Controller
 public class IndexController {
-
-    @GetMapping("/")
-    public String toIndex() {
-        // int i = 10 / 0;
-
-        // String blog = null;
-        // if (blog == null) {
-        //     throw new NotFoundException("博客不存在");
-        // }
-
-        // System.out.println("--------index--------");
-        // System.out.println("--------" + id + "--------");
-        // System.out.println("--------" + name + "--------");
-        return "index";
-    }
-
-    @GetMapping("/blog")
-    public String toBlog() {
-        return "blog";
-    }
-
-    @GetMapping("/login")
-    public String toLogin() {
-        return "admin/login";
-    }
-
-
-    @GetMapping("/admin/index")
-    public String toAdminIndex() {
-        return "admin/index";
-    }
 }

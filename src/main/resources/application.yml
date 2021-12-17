@@ -2,6 +2,7 @@ spring:
   #配置thymeleaf
   thymeleaf:
     mode: HTML
+    cache: false
   #指定环境
   profiles:
     active: dev

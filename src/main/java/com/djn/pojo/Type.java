@@ -3,28 +3,19 @@ package com.djn.pojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 分类 实体类
+ * 博客分类
  * @author ChristmasKey
- * @date 2021-12-03-14:07
+ * @date 2021-12-16-21:57
  */
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "t_type")
 public class Type {
 
-    @Id
-    @GeneratedValue
-    private Long id; //编号
-    @NotBlank(message="分类名称不能为空")
-    private String name; //分类名
+    private Integer id;//编号
+    private String name;//名称
 
-    @OneToMany(mappedBy = "type")
-    private List<Blog> blogs = new ArrayList<>();
+    private List<Blog> blogs;//博客列表
 }

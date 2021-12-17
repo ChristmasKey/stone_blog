@@ -3,51 +3,34 @@ package com.djn.pojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * 博客 实体类
+ * 博客
  * @author ChristmasKey
- * @date 2021-12-03-13:40
+ * @date 2021-12-16-21:58
  */
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "t_blog")
 public class Blog {
 
-    @Id
-    @GeneratedValue
-    private Long id; //编号
-    private String title; //标题
-    private String content; //内容
-    private String firstPicture; //首图
-    private String flag; //标记
-    private Integer views; //浏览次数
-    private boolean appreciation; //赞赏开启
-    private boolean shareStatement; //版权开启
-    private boolean commentabled; //评论开启
-    private boolean published; //发布开启
-    private boolean recommend; //是否推荐
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createTime; //创建时间
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateTime; //修改时间
+    private Integer id;//编号
+    private String title;//博客标题
+    private String content;//博客内容
+    private String firstImg;//博客首图
+    private String flag;//博客标记
+    private Integer views;//浏览量
+    private boolean appreciation;//赞赏开启
+    private boolean shareStatement;//转载开启
+    private boolean commentable;//评论开启
+    private boolean published;//博客状态：true(发布),false(草稿)
+    private boolean recommend;//推荐开启
+    private Date createTime;//发布时间
+    private Date updateTime;//更新时间
 
-    //***************设置实体类关系******************
-
-    @ManyToOne
-    private Type type;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST}) //设置Tag和Blog为级联新增
-    private List<Tag> tags = new ArrayList<>();
-
-    @ManyToOne
-    private User user;
-
-    @OneToMany(mappedBy = "blog")
-    private List<Comment> comments = new ArrayList<>();
+    private Type type;//博客分类
+    private User user;//作者
+    private List<Tag> tags;//博客标签
+    private List<Comment> comments;//博客评论
 }

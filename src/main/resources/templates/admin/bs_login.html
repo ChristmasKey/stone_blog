@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>登录</title>
+    <!--/*/<th:block th:replace="admin/my_fragments::common_css">/*/-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/me.css}">
+    <!--/*/</th:block>/*/-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/signin.css}">
+</head>
+<body class="text-center">
+
+<form class="form-signin" method="post" th:action="@{/admin/login}">
+    <img class="mb-4" th:src="@{/img/stone.png}" alt="stone" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal text-info">Please sign in</h1>
+    <!--错误信息提示-->
+    <div class="text-danger font-weight-bold mb-2" th:unless="${#strings.isEmpty(message)}">[[${message}]]</div>
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required
+           autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="remember" value="remember-me"> <span class="text-info">Remember me</span>
+        </label>
+    </div>
+    <button class="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
+</form>
+
+<!--/*/<th:block th:replace="admin/my_fragments::common_script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<!--/*/</th:block>/*/-->
+</body>
+</html>

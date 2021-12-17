@@ -18,15 +18,6 @@ spring:
     testOnBorrow: false
     testOnReturn: false
     poolPreparedStatements: true
-  #配置JPA
-  jpa:
-    hibernate:
-      #（update表示每次连接数据库，会自动检测实体类变动，并根据映射对表结构做修改）
-      ddl-auto: update
-    #输出SQL语句到控制台和日志文件
-    show-sql: true
-    #（关闭Spring Boot启动Warning）
-    open-in-view: false
 #配置日志
 logging:
   level:
@@ -41,3 +32,9 @@ logging:
 server:
   servlet:
     context-path: /stone
+#整合mybatis配置
+mybatis:
+  type-aliases-package: com.djn.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
