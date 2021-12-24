@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djn.dao.TypeDao">
+    <select id="queryTypes" resultType="Type">
+        select id, name from t_type
+    </select>
+
+    <select id="queryTypeByName" resultType="Type">
+        select id, name from t_type where name=#{name}
+    </select>
+
+    <select id="queryTypeById" resultType="Type">
+        select id, name from t_type where id=#{id}
+    </select>
+
+    <insert id="addType" parameterType="Type">
+        insert into t_type(id, name) value(#{id}, #{name})
+    </insert>
+
+    <update id="updateType" parameterType="Type">
+        update t_type set name=#{name} where id=#{id}
+    </update>
+
+    <delete id="deleteTypeById">
+        delete from t_type where id=#{id}
+    </delete>
+</mapper>

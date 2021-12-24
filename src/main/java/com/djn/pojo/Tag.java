@@ -3,6 +3,7 @@ package com.djn.pojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ import java.util.List;
 public class Tag {
 
     private Integer id;//编号
+    @NotBlank(message = "标签名称不能为空")
     private String name;//名称
 
     private List<Blog> blogs;//博客列表

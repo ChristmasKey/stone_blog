@@ -38,3 +38,7 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+#配置分页插件
+pagehelper:
+  reasonable: true
+  page-size-zero: true
