@@ -1,6 +1,8 @@
 package com.djn;
 
+import com.djn.pojo.Tag;
 import com.djn.pojo.Type;
+import com.djn.service.TagService;
 import com.djn.service.TypeService;
 import com.github.pagehelper.PageInfo;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,9 @@ class StoneBlogApplicationTests {
     @Resource
     private TypeService typeService;
 
+    @Resource
+    private TagService tagService;
+
     @Test
     void contextLoads() {
 
@@ -21,4 +26,12 @@ class StoneBlogApplicationTests {
         System.out.println(allTypesByPage);
     }
 
+    @Test
+    void testTagService() {
+        for (int i = 0; i < 15; i++) {
+            Tag tag = new Tag();
+            tag.setName("tag"+(i+1));
+            tagService.addTag(tag);
+        }
+    }
 }

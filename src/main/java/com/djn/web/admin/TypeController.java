@@ -26,9 +26,6 @@ public class TypeController {
 
     /**
      * 分页显示博客分类列表
-     * @param pageNum
-     * @param model
-     * @return
      */
     @GetMapping("/types")
     public String toTypeList(@RequestParam(defaultValue = "1", name = "pageNum")Integer pageNum, Model model) {
@@ -39,7 +36,6 @@ public class TypeController {
 
     /**
      * 跳转到新增分类页面
-     * @return
      */
     @GetMapping("/type")
     public String toTypeAdd(Model model) {
@@ -49,9 +45,6 @@ public class TypeController {
 
     /**
      * 跳转到修改分类页面
-     * @param id
-     * @param model
-     * @return
      */
     @GetMapping("/type/{id}")
     public String toTypeEdit(@PathVariable("id")Integer id, Model model) {
@@ -60,8 +53,7 @@ public class TypeController {
     }
 
     /**
-     * 新增分类
-     * @return
+     * 新增/更新分类
      */
     @PostMapping("/type")
     public String typeInput(@Valid Type type, BindingResult result, RedirectAttributes attributes) {
@@ -76,44 +68,38 @@ public class TypeController {
             return "admin/bs_type_add";
         }
 
-        int res = typeService.addType(type);
+        if (type.getId() == null) {//新增
+            int res = typeService.addType(type);
 
-        if (res > 0) {
-            attributes.addFlashAttribute("message", "添加成功");
-        } else {
-            attributes.addFlashAttribute("message", "添加失败");
+            if (res > 0) {
+                attributes.addFlashAttribute("message", "添加成功");
+            } else {
+                attributes.addFlashAttribute("errorMsg", "添加失败");
+            }
+        } else {//更新
+            int res = typeService.updateType(type);
+
+            if (res > 0) {
+                attributes.addFlashAttribute("message", "更新成功");
+            } else {
+                attributes.addFlashAttribute("errorMsg", "更新失败");
+            }
         }
 
         return "redirect:/admin/types";
     }
 
     /**
-     * 更新分类
-     * @param type
-     * @param result
-     * @param id
-     * @param attributes
-     * @return
+     * 删除分类
      */
-    @PostMapping("/type/{id}")
-    public String typeEdit(@Valid Type type, BindingResult result,
-                           @PathVariable("id")Integer id, RedirectAttributes attributes) {
-        Type existType = typeService.getTypeByName(type.getName());
-
-        if (existType != null) {
-            result.rejectValue("name", "nameError", "分类已存在");
-        }
-
-        if (result.hasErrors()) {
-            return "admin/bs_type_add";
-        }
-
-        int res = typeService.updateType(type);
+    @GetMapping("/type/del/{id}")
+    public String typeDelete(@PathVariable("id")Integer id, RedirectAttributes attributes) {
+        int res = typeService.deleteType(id);
 
         if (res > 0) {
-            attributes.addFlashAttribute("message", "更新成功");
+            attributes.addFlashAttribute("message", "删除成功");
         } else {
-            attributes.addFlashAttribute("message", "更新失败");
+            attributes.addFlashAttribute("errorMsg", "删除失败");
         }
 
         return "redirect:/admin/types";

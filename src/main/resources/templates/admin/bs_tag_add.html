@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>分类管理</title>
+    <title>标签管理</title>
     <!--/*/<th:block th:replace="admin/bs_fragments::common_css">/*/-->
     <link rel="icon" href="../img/stone.png">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- 导航条 -->
-<nav th:replace="admin/bs_fragments::menu(2)" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav th:replace="admin/bs_fragments::menu(3)" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a href="#" class="navbar-brand mb-0 h1 text-success font-weight-bold">Stone</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -33,7 +33,7 @@
                         <span class="align-middle">博客</span>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-grid-3x3-gap" viewBox="0 0 16 16">
@@ -43,7 +43,7 @@
                         <span class="align-middle">分类</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-tags" viewBox="0 0 16 16">
@@ -100,107 +100,48 @@
                     <span class="nav-link disabled"></span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/admin/types}">列表</a>
+                    <a class="nav-link" th:href="@{/admin/tags}">列表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/type}">新增</a>
+                    <a class="nav-link active" th:href="@{/admin/tag}">新增</a>
                 </li>
             </ul>
             <br>
-            <div class="row justify-content-center" th:unless="${#strings.isEmpty(message)}">
-                <div class="col-10">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <span th:text="${message}">Message</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center" th:unless="${#strings.isEmpty(errorMsg)}">
-                <div class="col-10">
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <span th:text="${errorMsg}">Message</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- 列表 -->
+            <!-- 表单 -->
             <div class="row justify-content-center">
-                <div class="col-10 py-3 border rounded mb-2">
-                    <!-- 表格 -->
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped text-center"
-                               style="background-color: #f3f9f1;">
-                            <thead>
-                            <tr class="table-primary">
-                                <th scope="col"></th>
-                                <th scope="col">标题</th>
-                                <th scope="col">操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="type,iterStat:${typesPage.list}">
-                                <th scope="row" th:text="${iterStat.count+(typesPage.pageNum-1)*typesPage.getPageSize()}">1</th>
-                                <td>
-                                    <div class="m-auto text-wrap" style="width: 200px;" th:text="${type.name}">分类1</div>
-                                </td>
-                                <td>
-                                    <div class="m-auto text-wrap" style="width: 100px;">
-                                        <a th:href="@{/admin/type/{id}(id=${type.id})}" class="btn btn-sm btn-outline-success">编辑</a>
-                                        <a th:href="@{/admin/type/del/{id}(id=${type.id})}" class="btn btn-sm btn-outline-danger">删除</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- 分页 -->
-                    <div>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination pagination-sm justify-content-center">
-                                <li class="page-item">
-                                    <a th:href="@{/admin/types(pageNum=${typesPage.navigateFirstPage})}" class="page-link text-info">首页</a>
-                                </li>
-                                <li class="page-item" th:if="${typesPage.hasPreviousPage}">
-                                    <a class="page-link text-info" th:href="@{/admin/types(pageNum=${typesPage.prePage})}"
-                                       aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link text-info" th:if="${typesPage.hasPreviousPage}"
-                                       th:href="@{/admin/types(pageNum=${typesPage.prePage})}"
-                                    th:text="${typesPage.prePage}">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link text-info"
-                                       th:href="@{/admin/types(pageNum=${typesPage.pageNum})}"
-                                    th:text="${typesPage.pageNum}">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link text-info" th:if="${typesPage.hasNextPage}"
-                                       th:href="@{/admin/types(pageNum=${typesPage.nextPage})}"
-                                    th:text="${typesPage.nextPage}">1</a>
-                                </li>
-                                <li class="page-item" th:if="${typesPage.hasNextPage}">
-                                    <a class="page-link text-info" th:href="@{/admin/types(pageNum=${typesPage.nextPage})}" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a th:href="@{/admin/types(pageNum=${typesPage.navigateLastPage})}" class="page-link text-info">尾页</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                <div class="col-10 border rounded py-3 mb-5">
+                    <form th:action="@{/admin/tag}" class="form-group" method="post" th:object="${tag}">
+                        <input type="hidden" name="id" th:value="*{id}">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-success text-light border-success">名称</div>
+                            </div>
+                            <input name="name" type="text" th:value="*{name}"
+                                   class="form-control border-success" placeholder="标签名称" required>
+                        </div>
+                        <br>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                             th:if="${#fields.hasErrors('name')}">
+                            <span th:errors="*{name}">Error Message</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-success">提交</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <!-- 底部footer -->
 <footer th:replace="admin/bs_fragments::footer" class="bg-dark">

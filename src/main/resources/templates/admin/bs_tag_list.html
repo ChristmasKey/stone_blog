@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>分类管理</title>
+    <title>标签管理</title>
     <!--/*/<th:block th:replace="admin/bs_fragments::common_css">/*/-->
     <link rel="icon" href="../img/stone.png">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- 导航条 -->
-<nav th:replace="admin/bs_fragments::menu(2)" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav th:replace="admin/bs_fragments::menu(3)" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a href="#" class="navbar-brand mb-0 h1 text-success font-weight-bold">Stone</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -33,7 +33,7 @@
                         <span class="align-middle">博客</span>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-grid-3x3-gap" viewBox="0 0 16 16">
@@ -43,7 +43,7 @@
                         <span class="align-middle">分类</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-tags" viewBox="0 0 16 16">
@@ -100,10 +100,10 @@
                     <span class="nav-link disabled"></span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/admin/types}">列表</a>
+                    <a class="nav-link active" th:href="@{/admin/tags}">列表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/type}">新增</a>
+                    <a class="nav-link" th:href="@{/admin/tag}">新增</a>
                 </li>
             </ul>
             <br>
@@ -135,22 +135,22 @@
                         <table class="table table-bordered table-striped text-center"
                                style="background-color: #f3f9f1;">
                             <thead>
-                            <tr class="table-primary">
+                            <tr class="table-success">
                                 <th scope="col"></th>
                                 <th scope="col">标题</th>
                                 <th scope="col">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="type,iterStat:${typesPage.list}">
-                                <th scope="row" th:text="${iterStat.count+(typesPage.pageNum-1)*typesPage.getPageSize()}">1</th>
+                            <tr th:each="tag,iterStat:${tagsPage.list}">
+                                <th scope="row" th:text="${iterStat.count+(tagsPage.pageNum-1)*tagsPage.getPageSize()}">1</th>
                                 <td>
-                                    <div class="m-auto text-wrap" style="width: 200px;" th:text="${type.name}">分类1</div>
+                                    <div class="m-auto text-wrap" style="width: 200px;" th:text="${tag.name}">分类1</div>
                                 </td>
                                 <td>
                                     <div class="m-auto text-wrap" style="width: 100px;">
-                                        <a th:href="@{/admin/type/{id}(id=${type.id})}" class="btn btn-sm btn-outline-success">编辑</a>
-                                        <a th:href="@{/admin/type/del/{id}(id=${type.id})}" class="btn btn-sm btn-outline-danger">删除</a>
+                                        <a th:href="@{/admin/tag/{id}(id=${tag.id})}" class="btn btn-sm btn-outline-success">编辑</a>
+                                        <a th:href="@{/admin/tag/del/{id}(id=${tag.id})}" class="btn btn-sm btn-outline-danger">删除</a>
                                     </div>
                                 </td>
                             </tr>
@@ -162,36 +162,36 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination pagination-sm justify-content-center">
                                 <li class="page-item">
-                                    <a th:href="@{/admin/types(pageNum=${typesPage.navigateFirstPage})}" class="page-link text-info">首页</a>
+                                    <a th:href="@{/admin/tags(pageNum=${tagsPage.navigateFirstPage})}" class="page-link text-info">首页</a>
                                 </li>
-                                <li class="page-item" th:if="${typesPage.hasPreviousPage}">
-                                    <a class="page-link text-info" th:href="@{/admin/types(pageNum=${typesPage.prePage})}"
+                                <li class="page-item" th:if="${tagsPage.hasPreviousPage}">
+                                    <a class="page-link text-info" th:href="@{/admin/tags(pageNum=${tagsPage.prePage})}"
                                        aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link text-info" th:if="${typesPage.hasPreviousPage}"
-                                       th:href="@{/admin/types(pageNum=${typesPage.prePage})}"
-                                    th:text="${typesPage.prePage}">1</a>
+                                    <a class="page-link text-info" th:if="${tagsPage.hasPreviousPage}"
+                                       th:href="@{/admin/tags(pageNum=${tagsPage.prePage})}"
+                                       th:text="${tagsPage.prePage}">1</a>
                                 </li>
                                 <li class="page-item">
                                     <a class="page-link text-info"
-                                       th:href="@{/admin/types(pageNum=${typesPage.pageNum})}"
-                                    th:text="${typesPage.pageNum}">1</a>
+                                       th:href="@{/admin/tags(pageNum=${tagsPage.pageNum})}"
+                                       th:text="${tagsPage.pageNum}">1</a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link text-info" th:if="${typesPage.hasNextPage}"
-                                       th:href="@{/admin/types(pageNum=${typesPage.nextPage})}"
-                                    th:text="${typesPage.nextPage}">1</a>
+                                    <a class="page-link text-info" th:if="${tagsPage.hasNextPage}"
+                                       th:href="@{/admin/tags(pageNum=${tagsPage.nextPage})}"
+                                       th:text="${tagsPage.nextPage}">1</a>
                                 </li>
-                                <li class="page-item" th:if="${typesPage.hasNextPage}">
-                                    <a class="page-link text-info" th:href="@{/admin/types(pageNum=${typesPage.nextPage})}" aria-label="Next">
+                                <li class="page-item" th:if="${tagsPage.hasNextPage}">
+                                    <a class="page-link text-info" th:href="@{/admin/tags(pageNum=${tagsPage.nextPage})}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
                                 <li class="page-item">
-                                    <a th:href="@{/admin/types(pageNum=${typesPage.navigateLastPage})}" class="page-link text-info">尾页</a>
+                                    <a th:href="@{/admin/tags(pageNum=${tagsPage.navigateLastPage})}" class="page-link text-info">尾页</a>
                                 </li>
                             </ul>
                         </nav>
