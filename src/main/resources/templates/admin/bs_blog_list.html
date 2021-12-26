@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>博客管理</title>
+    <!--/*/<th:block th:replace="admin/bs_fragments::common_css">/*/-->
+    <link rel="icon" href="../img/stone.png">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/me.css" />
+    <!--/*/</th:block>/*/-->
+</head>
+<body>
+<!-- 导航条 -->
+<nav th:replace="admin/bs_fragments::menu(1)" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a href="#" class="navbar-brand mb-0 h1 text-success font-weight-bold">Stone</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-house-door" viewBox="0 0 16 16">
+                            <path
+                                    d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+                        </svg>
+                        <span class="align-middle">博客</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-grid-3x3-gap" viewBox="0 0 16 16">
+                            <path
+                                    d="M4 2v2H2V2h2zm1 12v-2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 10v-2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 2v2H7V2h2zm5 0v2h-2V2h2zM4 7v2H2V7h2zm5 0v2H7V7h2zm5 0h-2v2h2V7zM4 12v2H2v-2h2zm5 0v2H7v-2h2zm5 0v2h-2v-2h2zM12 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z" />
+                        </svg>
+                        <span class="align-middle">分类</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-tags" viewBox="0 0 16 16">
+                            <path
+                                    d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z" />
+                            <path
+                                    d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z" />
+                        </svg>
+                        <span class="align-middle">标签</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-layers" viewBox="0 0 16 16">
+                            <path
+                                    d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
+                        </svg>
+                        <span class="align-middle">归档</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                        <span class="align-middle">关于我</span>
+                    </a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <img src="../img/1015.jpg" class="rounded-circle mr-sm-2" width="30" height="30">
+                &nbsp;
+                <span class="text-info mr-sm-2">
+							JiaNanSt
+						</span>
+                &nbsp;
+                <a href="#" class="btn btn-outline-light">Sign Out</a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!-- 中间内容 -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-11 bgc-jingbai border rounded">
+            <!-- 选项卡 -->
+            <ul class="nav nav-tabs mt-2">
+                <li class="nav-item">
+                    <span class="nav-link disabled"></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/admin/blogs}">列表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/blog}">发布</a>
+                </li>
+            </ul>
+            <br>
+            <!-- 搜索表单 -->
+            <div class="row justify-content-center">
+                <div class="col-10 border rounded py-3" style="background-color: #e0f0e9;">
+                    <form method="post" id="search_form">
+                        <div class="row align-items-center">
+                            <input type="hidden" name="pageNum">
+                            <div class="col-lg-auto">
+                                <input type="text" name="title" id="title" placeholder="标题"
+                                       class="form-control" />
+                            </div>
+                            <div class="col-lg-auto mt-2 mt-lg-0">
+                                <select class="form-control" id="typeId" name="typeId">
+                                    <option value="0" selected>--选择分类--</option>
+                                    <option th:each="type:${types}" th:value="${type.id}" th:text="${type.name}">分类1</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-auto mt-2 mt-lg-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="autoSizingCheck"
+                                           name="recommend" checked>
+                                    <label class="form-check-label font-weight-light" for="autoSizingCheck">
+                                        推荐
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-auto mt-2 mt-lg-0 text-right text-lg-left">
+                                <input type="reset" value="清空" class="btn btn-sm btn-outline-secondary">
+                                <button id="search_btn" type="button" class="btn btn-sm btn-outline-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                         fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                    <span class="align-middle">搜索</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 列表 -->
+            <div class="row justify-content-center" id="table_container" th:id="table_container">
+                <div class="col-10 py-3 border rounded mt-2 mb-2" th:fragment="blogList">
+                    <!-- 表格 -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped text-center"
+                               style="background-color: #f3f9f1;">
+                            <thead>
+                            <tr class="table-info">
+                                <th scope="col"></th>
+                                <th scope="col">标题</th>
+                                <th scope="col">分类</th>
+                                <th scope="col">推荐</th>
+                                <th scope="col">状态</th>
+                                <th scope="col">更新时间</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="blog,iterStat:${blogsPage.list}">
+                                <th scope="row" th:text="${iterStat.count+(blogsPage.pageNum-1)*blogsPage.getPageSize()}">1</th>
+                                <td>
+                                    <div class="m-auto text-wrap" style="width: 200px;" th:text="${blog.title}">博客1</div>
+                                </td>
+                                <td>
+                                    <div class="m-auto text-wrap" style="width: 100px;" th:text="${blog.type.name}">分类1</div>
+                                </td>
+                                <td th:text="${blog.recommend?'是':'否'}">是</td>
+                                <td th:text="${blog.published?'发布':'草稿'}">草稿</td>
+                                <td>
+                                    <div class="m-auto text-wrap" style="width: 125px;"
+                                         th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm')}">
+                                        2021-11-20 18:01
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="m-auto text-wrap" style="width: 100px;">
+                                        <a href="#" class="btn btn-sm btn-outline-success">编辑</a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger">删除</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 分页 -->
+                    <div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination pagination-sm justify-content-center">
+                                <li class="page-item">
+                                    <a th:attr="data-page=${blogsPage.navigateFirstPage}"
+                                       onclick="page(this)" class="page-link text-info">首页</a>
+                                </li>
+                                <li class="page-item" th:if="${blogsPage.hasPreviousPage}">
+                                    <a class="page-link text-info" th:attr="data-page=${blogsPage.prePage}"
+                                       onclick="page(this)" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link text-info" th:if="${blogsPage.hasPreviousPage}"
+                                       th:attr="data-page=${blogsPage.prePage}" onclick="page(this)"
+                                       th:text="${blogsPage.prePage}">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link text-info"
+                                       th:attr="data-page=${blogsPage.pageNum}" onclick="page(this)"
+                                       th:text="${blogsPage.pageNum}">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link text-info" th:if="${blogsPage.hasNextPage}"
+                                       th:attr="data-page=${blogsPage.nextPage}" onclick="page(this)"
+                                       th:text="${blogsPage.nextPage}">1</a>
+                                </li>
+                                <li class="page-item" th:if="${blogsPage.hasNextPage}">
+                                    <a class="page-link text-info" th:attr="data-page=${blogsPage.nextPage}"
+                                       onclick="page(this)" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a th:attr="data-page=${blogsPage.navigateLastPage}"
+                                       onclick="page(this)" class="page-link text-info">尾页</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部footer -->
+<footer th:replace="admin/bs_fragments::footer" class="bg-dark">
+    <div class="container">
+        <!-- 第一行 -->
+        <div class="row">
+            <!-- 微信二维码 -->
+            <div class="col-lg text-center my-3 my-lg-5">
+                <img src="../img/stoneMicroChat.jpg" alt="WeChat" class="img-thumbnail rounded" height="120px;"
+                     width="120px;">
+            </div>
+            <!-- 分割线 -->
+            <div class="col-0 border border-secondary my-3 my-lg-5 d-none d-lg-block"></div>
+            <!-- 最新博客推荐 -->
+            <div class="col-lg text-center my-3 my-lg-5">
+                <h5 class="text-light">最新博客</h5>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">用户故事（User Story）</a></div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">用户故事（User Story）</a></div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">用户故事（User Story）</a></div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">用户故事（User Story）</a></div>
+                </div>
+            </div>
+            <!-- 分割线 -->
+            <div class="col-0 border border-secondary my-3 my-lg-5 d-none d-lg-block"></div>
+            <!-- 联系方式 -->
+            <div class="col-lg text-center my-3 my-lg-5">
+                <h5 class="text-light">联系我</h5>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">Email：JiaNanSt@qq.com</a></div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">QQ：1046280246</a></div>
+                </div>
+            </div>
+            <!-- 分割线 -->
+            <div class="col-0 border border-secondary my-3 my-lg-5 d-none d-lg-block"></div>
+            <!-- 博主信息 -->
+            <div class="col-lg-5 text-center my-3 my-lg-5">
+                <h5 class="text-light">Blog</h5>
+                <div class="row">
+                    <div class="col text-secondary">
+                        <p>这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这的人一些帮助...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 水平分割线 -->
+        <div class="row border border-secondary"></div>
+        <!-- 第二行 -->
+        <div class="row pt-lg-3 pb-lg-5">
+            <div class="col-lg text-center my-3">
+                <p class="text-secondary">Copyright © 2020-2021 StoneBlog Designed by JiaNanStone</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--/*/<th:block th:replace="admin/bs_fragments::common_script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    function page(obj) {
+        $("[name='pageNum']").val($(obj).data("page"));
+        loadData();
+    }
+
+    $("#search_btn").click(function () {
+        loadData();
+    });
+
+    function loadData() {
+        $("#table_container").load("/stone/admin/blogs", {
+            title: $("[name='title']").val(),
+            typeId: $("[name='typeId']").val(),
+            recommend: $("[name='recommend']").prop('checked'),
+            pageNum: $("[name='pageNum']").val()
+        })
+    }
+</script>
+</body>
+</html>

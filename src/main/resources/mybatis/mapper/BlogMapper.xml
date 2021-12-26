@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djn.dao.BlogDao">
+    <select id="queryAllBlogs" parameterType="Blog" resultType="Blog">
+        select
+               id, title, content,
+               first_img, flag, views,
+               appreciation, share_statement,
+               commentable, published, recommend,
+               create_time, update_time,
+               type_id, user_id
+        from t_blog
+        <where>
+            <if test="title != null and title != ''">
+                title=#{title}
+            </if>
+            <if test="typeId != null and typeId != 0">
+                and type_id=#{typeId}
+            </if>
+            <if test="recommend != null">
+                and recommend=#{recommend}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryBlogById" resultType="Blog">
+        select
+            id, title, content,
+            first_img, flag, views,
+            appreciation, share_statement,
+            commentable, published, recommend,
+            create_time, update_time,
+            type_id, user_id
+        from t_blog where id=#{id}
+    </select>
+
+    <select id="queryBlogByTitle" resultType="Integer">
+        select
+            count(1)
+        from t_blog where title=#{title}
+    </select>
+
+    <insert id="addBlog" parameterType="Blog" useGeneratedKeys="true" keyProperty="id">
+        insert into t_blog (
+            title, content, first_img,
+            flag, views, appreciation,
+            share_statement, commentable,
+            published, recommend,
+            create_time, update_time,
+            type_id, user_id
+            )
+        VALUE (
+            #{title}, #{content}, #{firstImg},
+            #{flag}, #{views}, #{appreciation},
+            #{shareStatement}, #{commentable},
+            #{published}, #{recommend},
+            #{createTime}, #{updateTime},
+            #{typeId}, #{userId}
+            )
+    </insert>
+
+    <update id="updateBlog" parameterType="Blog">
+        update t_blog
+        <set>
+            <if test="title != null">
+                title=#{title},
+            </if>
+            <if test="content != null">
+                content=#{content},
+            </if>
+            <if test="firstImg != null">
+                first_img=#{firstImg},
+            </if>
+            <if test="flag != null">
+                flag=#{flag},
+            </if>
+            <if test="views != null">
+                views=#{views},
+            </if>
+            appreciation=#{appreciation},
+            share_statement=#{shareStatement},
+            commentable=#{commentable},
+            published=#{published},
+            recommend=#{recommend},
+            <if test="createTime != null">
+                create_time=#{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time=#{updateTime},
+            </if>
+            <if test="typeId != null">
+                type_id=#{typeId},
+            </if>
+            <if test="userId != null">
+                user_id=#{userId}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteBlogById">
+        delete from t_blog where id=#{id}
+    </delete>
+</mapper>
