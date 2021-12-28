@@ -44,6 +44,11 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
+    public List<Integer> getTagIdsByBlogId(Integer blogId) {
+        return tagDao.queryTagIdWithBlog(blogId);
+    }
+
+    @Override
     @Transactional
     public int addTag(Tag tag) {
         return tagDao.addTag(tag);

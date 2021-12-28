@@ -15,6 +15,10 @@
         select id, name from t_tag where id=#{id}
     </select>
 
+    <select id="queryTagIdWithBlog" resultType="Integer">
+        select tag_id from t_blog_tag where blog_id=#{blogId}
+    </select>
+
     <insert id="addTag" parameterType="Tag">
         insert into t_tag(id, name) value(#{id}, #{name})
     </insert>

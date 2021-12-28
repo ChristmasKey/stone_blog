@@ -20,6 +20,8 @@ public interface TagService {
 
     Tag getTagById(Integer id);
 
+    List<Integer> getTagIdsByBlogId(Integer blogId);
+
     int addTag(Tag tag);
 
     int updateTag(Tag tag);

@@ -107,6 +107,26 @@
                 </li>
             </ul>
             <br>
+            <div class="row justify-content-center" th:unless="${#strings.isEmpty(message)}">
+                <div class="col-10">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span th:text="${message}">Message</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center" th:unless="${#strings.isEmpty(errorMsg)}">
+                <div class="col-10">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span th:text="${errorMsg}">Message</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <!-- 搜索表单 -->
             <div class="row justify-content-center">
                 <div class="col-10 border rounded py-3" style="background-color: #e0f0e9;">
@@ -184,8 +204,8 @@
                                 </td>
                                 <td>
                                     <div class="m-auto text-wrap" style="width: 100px;">
-                                        <a href="#" class="btn btn-sm btn-outline-success">编辑</a>
-                                        <a href="#" class="btn btn-sm btn-outline-danger">删除</a>
+                                        <a th:href="@{/admin/blog/{id}(id=${blog.id})}" class="btn btn-sm btn-outline-success">编辑</a>
+                                        <a th:href="@{/admin/blog/del/{id}(id=${blog.id})}" class="btn btn-sm btn-outline-danger">删除</a>
                                     </div>
                                 </td>
                             </tr>
@@ -317,7 +337,7 @@
     });
 
     function loadData() {
-        $("#table_container").load("/stone/admin/blogs", {
+        $("#table_container").load("[[@{/admin/blogs}]]", {
             title: $("[name='title']").val(),
             typeId: $("[name='typeId']").val(),
             recommend: $("[name='recommend']").prop('checked'),

@@ -36,7 +36,7 @@
         from t_blog where id=#{id}
     </select>
 
-    <select id="queryBlogByTitle" resultType="Integer">
+    <select id="countBlogByTitle" resultType="Integer">
         select
             count(1)
         from t_blog where title=#{title}
@@ -61,6 +61,13 @@
             )
     </insert>
 
+    <insert id="addBlogTags">
+        insert into t_blog_tag (blog_id, tag_id) VALUES
+        <foreach collection="tagIds" item="tagId" separator=",">
+            (#{blogId}, #{tagId})
+        </foreach>
+    </insert>
+
     <update id="updateBlog" parameterType="Blog">
         update t_blog
         <set>
@@ -76,17 +83,11 @@
             <if test="flag != null">
                 flag=#{flag},
             </if>
-            <if test="views != null">
-                views=#{views},
-            </if>
             appreciation=#{appreciation},
             share_statement=#{shareStatement},
             commentable=#{commentable},
             published=#{published},
             recommend=#{recommend},
-            <if test="createTime != null">
-                create_time=#{createTime},
-            </if>
             <if test="updateTime != null">
                 update_time=#{updateTime},
             </if>
@@ -102,5 +103,9 @@
 
     <delete id="deleteBlogById">
         delete from t_blog where id=#{id}
+    </delete>
+
+    <delete id="deleteBlogTags">
+        delete from t_blog_tag where blog_id=#{id}
     </delete>
 </mapper>

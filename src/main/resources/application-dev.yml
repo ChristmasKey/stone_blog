@@ -18,6 +18,10 @@ spring:
     testOnBorrow: false
     testOnReturn: false
     poolPreparedStatements: true
+  #设置文件上传大小限制
+  servlet:
+    multipart:
+      max-file-size: 5MB
 #配置日志
 logging:
   level:

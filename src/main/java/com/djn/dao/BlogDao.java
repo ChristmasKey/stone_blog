@@ -22,14 +22,20 @@ public interface BlogDao {
     Blog queryBlogById(Integer id);
 
     //根据标题查询博客数
-    int queryBlogByTitle(String title);
+    int countBlogByTitle(String title);
 
     //新增博客
     int addBlog(Blog blog);
+
+    //新增博客标签
+    int addBlogTags(List<Integer> tagIds, Integer blogId);
 
     //更新博客
     int updateBlog(Blog blog);
 
     //删除博客
     int deleteBlogById(Integer id);
+
+    //删除博客标签
+    int deleteBlogTags(Integer id);
 }

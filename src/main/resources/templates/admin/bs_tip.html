@@ -3,18 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>博客管理</title>
+    <title>提示</title>
     <!--/*/<th:block th:replace="admin/bs_fragments::common_css">/*/-->
     <link rel="icon" href="../img/stone.png">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/me.css" />
+    <link rel="stylesheet" type="text/css" href="../css/me.css"/>
     <!--/*/</th:block>/*/-->
-    <!-- 引入Markdown编辑器的CSS文件 -->
-    <link rel="stylesheet" th:href="@{/lib/editormd/css/editormd.min.css}">
 </head>
 <body>
 <!-- 导航条 -->
-<nav th:replace="admin/bs_fragments::menu(1)" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav th:replace="admin/bs_fragments::menu(4)" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a href="#" class="navbar-brand mb-0 h1 text-success font-weight-bold">Stone</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -25,7 +23,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-house-door" viewBox="0 0 16 16">
@@ -67,7 +65,7 @@
                         <span class="align-middle">归档</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-info-circle" viewBox="0 0 16 16">
@@ -95,111 +93,17 @@
 <!-- 中间内容 -->
 <div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-11 bgc-jingbai border rounded">
-            <!-- 选项卡 -->
-            <ul class="nav nav-tabs mt-2">
-                <li class="nav-item">
-                    <span class="nav-link disabled"></span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/blogs}">列表</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/admin/blog}">发布</a>
-                </li>
-            </ul>
-            <!-- 表单 -->
-            <form id="blogForm"  th:action="@{/admin/blog}" th:object="${blog}"
-                  method="post" class="form-group mt-4 px-lg-3">
-                <!-- 博客来源&标题 -->
-                <div class="form-row">
-                    <div class="form-group col-md-2">
-                        <select name="flag" id="flag" class="form-control border-info text-info">
-                            <option th:selected="*{flag}==1" value="1">原创</option>
-                            <option th:selected="*{flag}==2" value="2">转载</option>
-                            <option th:selected="*{flag}==3" value="3">翻译</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <input type="text" name="title" id="title" class="form-control border-info"
-                               placeholder="标题" th:value="*{title}"/>
-                    </div>
-                </div>
-                <!--博客首图-->
-                <div class="form-row">
-                    <div class="form-group col-md-10">
-                        <input type="text" name="firstImg" id="firstImg" th:value="*{firstImg}"
-                               class="form-control border-info" placeholder="首图">
-                    </div>
-                </div>
-                <!-- 博客正文 -->
-                <div class="form-row">
-                    <div id="md-content">
-                        <textarea name="content" placeholder="博客内容" style="display: none;"
-                                  th:text="*{content}"></textarea>
-                    </div>
-                </div>
-                <!-- 博客分类 -->
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-info bg-transparent text-info">分类</div>
-                            </div>
-                            <select name="typeId" class="form-control border-info text-info">
-                                <option th:each="type:${types}" th:value="${type.id}"
-                                        th:text="${type.name}" th:selected="*{typeId}==${type.id}">分类1</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!-- 博客标签 -->
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text border-info bg-transparent text-info">标签</div>
-                            </div>
-                            <select name="tagIds" class="form-control border-info text-info" multiple="multiple">
-                                <option th:each="tag:${tags}" th:value="${tag.id}"
-                                        th:text="${tag.name}" th:selected="${#lists.contains(blog.tagIds, tag.id)}">标签1</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!-- 其他选项&按钮 -->
-                <div class="form-row">
-                    <div class="form-group col-md-6 font-weight-light">
-                        <input type="checkbox" name="recommend" id="recommend" th:checked="*{recommend}"/>
-                        <label for="recommend" class="text-info">推荐</label>
-                        <input type="checkbox" name="shareStatement" id="shareStatement" th:checked="*{shareStatement}"/>
-                        <label for="shareStatement" class="text-info">转载声明</label>
-                        <input type="checkbox" name="appreciation" id="appreciation" th:checked="*{appreciation}"/>
-                        <label for="appreciation" class="text-info">赞赏</label>
-                        <input type="checkbox" name="commentable" id="commentable" th:checked="*{commentable}"/>
-                        <label for="commentable" class="text-info">评论</label>
-                    </div>
-                    <div class="form-group col-md-4 text-right">
-                        <button id="save_btn" type="button" class="btn btn-sm btn-primary">保存</button>
-                        <button id="publish_btn" type="button" class="btn btn-sm btn-success">发布</button>
-                    </div>
-                </div>
-                <!--是否发布-->
-                <input type="hidden" name="published">
-                <!--博客编号-->
-                <input type="hidden" name="id" th:value="*{id}">
-                <!--错误信息提示-->
-                <div class="alert alert-danger alert-dismissible fade show" role="alert"
-                     th:if="${#fields.hasErrors()}">
-                    <p th:errors="*{title}">Error Message</p>
-                    <p th:errors="*{firstImg}">Error Message</p>
-                    <p th:errors="*{content}">Error Message</p>
-                    <p th:errors="*{typeId}">Error Message</p>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </form>
+        <div class="col-8 border bgc-jingbai py-4">
+            <div class="border rounded text-center" style="background-color: #e0f0e9;">
+                <h1 class="text-success">Stone Blog 管理后台</h1>
+            </div>
+            <br>
+            <div class="text-center text-danger">
+                <h3>Sorry！This function is under developing...</h3>
+            </div>
+            <div>
+                <img th:src="@{/img/1010.jpg}" alt="欢迎" class="img-fluid rounded">
+            </div>
         </div>
     </div>
 </div>
@@ -270,46 +174,5 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <!--/*/</th:block>/*/-->
-<!-- 引入Markdown编辑器的JS文件 -->
-<script th:src="@{/lib/editormd/editormd.min.js}"></script>
-<script type="text/javascript">
-    // 集成editormd插件 初始化Markdown编辑器
-    var contentEditor;
-    $(function() {
-        contentEditor = editormd("md-content", {
-            width: '100%',
-            height: 640,
-            syncScrolling: 'single',
-            path: '[[@{/lib/editormd/lib/}]]',
-            onfullscreen: function() {
-                //通过设置z-index以实现全屏覆盖导航条，从而正常显示
-                $('#md-content').css('z-index', '1500');
-            },
-            onfullscreenExit: function() {
-                //恢复z-index
-                $('#md-content').css('z-index', '1');
-            },
-            //关闭工具栏自动固定定位
-            toolbarAutoFixed: false,
-            //图片上传
-            imageUpload: true,
-            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL: '[[@{/admin/upload}]]',
-            //开启表情
-            emoji: true,
-            watch: false
-        })
-    });
-
-    $("#save_btn").click(function () {
-        $("[name='published']").val(false);
-        $("#blogForm").submit();
-    });
-
-    $("#publish_btn").click(function () {
-        $("[name='published']").val(true);
-        $("#blogForm").submit();
-    });
-</script>
 </body>
 </html>

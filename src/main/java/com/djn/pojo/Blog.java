@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +34,13 @@ public class Blog {
     private Boolean recommend;//推荐开启
     private Date createTime;//发布时间
     private Date updateTime;//更新时间
-    @NotBlank(message = "博客分类不能为空")
+    @NotNull(message = "博客分类不能为空")
     private Integer typeId;//分类编号
     private Integer userId;//作者编号
+    private List<Integer> tagIds = new ArrayList<>();//标签编号
 
     private Type type;//博客分类
     private User user;//作者
-    @NotBlank(message = "博客标签不能为空")
-    private List<Tag> tags;//博客标签
-    private List<Comment> comments;//博客评论
+    private List<Tag> tags = new ArrayList<>();//博客标签
+    private List<Comment> comments = new ArrayList<>();//博客评论
 }

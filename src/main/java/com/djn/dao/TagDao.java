@@ -24,6 +24,9 @@ public interface TagDao {
     //根据id查询标签
     Tag queryTagById(Integer id);
 
+    //查询博客的所有标签id
+    List<Integer> queryTagIdWithBlog(Integer blogId);
+
     //新增标签
     int addTag(Tag tag);
 
