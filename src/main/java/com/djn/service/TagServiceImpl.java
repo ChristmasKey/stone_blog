@@ -22,6 +22,11 @@ public class TagServiceImpl implements TagService{
     private TagDao tagDao;
 
     @Override
+    public List<Tag> queryTopFourTag() {
+        return tagDao.queryTopFourTag();
+    }
+
+    @Override
     public List<Tag> queryTags() {
         return tagDao.queryTags();
     }

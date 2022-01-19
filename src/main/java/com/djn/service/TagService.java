@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface TagService {
 
+    List<Tag> queryTopFourTag();
+
     List<Tag> queryTags();
 
     PageInfo<Tag> findAllTagsByPage(int pageNum, int pageSize);

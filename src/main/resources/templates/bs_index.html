@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>首页</title>
+    <!--/*/<th:block th:replace="bs_fragments::common_css">/*/-->
+    <link rel="icon" href="img/stone.png">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/me.css">
+    <!--/*/</th:block>/*/-->
+</head>
+<body>
+<!-- 导航条 -->
+<nav th:replace="bs_fragments::menu(1)" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1 text-success font-weight-bold">Stone</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-house-door" viewBox="0 0 16 16">
+                            <path
+                                    d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+                        </svg>
+                        <span class="align-middle">博客</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-grid-3x3-gap" viewBox="0 0 16 16">
+                            <path
+                                    d="M4 2v2H2V2h2zm1 12v-2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 10v-2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 2v2H7V2h2zm5 0v2h-2V2h2zM4 7v2H2V7h2zm5 0v2H7V7h2zm5 0h-2v2h2V7zM4 12v2H2v-2h2zm5 0v2H7v-2h2zm5 0v2h-2v-2h2zM12 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z" />
+                        </svg>
+                        <span class="align-middle">分类</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-tags" viewBox="0 0 16 16">
+                            <path
+                                    d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z" />
+                            <path
+                                    d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z" />
+                        </svg>
+                        <span class="align-middle">标签</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-layers" viewBox="0 0 16 16">
+                            <path
+                                    d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
+                        </svg>
+                        <span class="align-middle">归档</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                        <span class="align-middle">关于我</span>
+                    </a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!-- 中间内容 -->
+<div class="container my-5 rounded border" style="background-color: #ffffff;">
+    <div class="row border-right border-bottom">
+        <!-- 左侧博客列表 -->
+        <div class="col-lg-8 border-right">
+            <!-- 列表头 -->
+            <div class="row mt-3 border-bottom">
+                <div class="col">
+                    <h3><span class="badge badge-info">博客</span></h3>
+                </div>
+                <div class="col text-right align-self-end">
+                    共 <span class="count-span" th:text="${#session.getAttribute('blogNum')}">14</span> 篇
+                </div>
+            </div>
+            <!-- 列表体 -->
+            <div class="row mt-3">
+                <div class="col">
+                    <!-- 博客卡片 -->
+                    <div class="jumbotron" th:each="blog:${blogsPage.list}">
+                        <div class="container-fluid my-lg-n5">
+                            <div class="row">
+                                <!-- 第一列 -->
+                                <div class="col-lg-4 p-lg-0">
+                                    <!-- 首图 -->
+                                    <img th:src="@{${blog.firstImg}}" class="img-fluid rounded" alt="首图暂无">
+                                </div>
+                                <!-- 第二列 -->
+                                <div class="col-lg-8">
+                                    <!-- 标题 -->
+                                    <div class="row mt-2">
+                                        <div class="col blog-card-title">
+                                            <a th:href="@{/blog/{id}(id=${blog.id})}"
+                                               class="text-decoration-none text-dark" target="_blank"
+                                               th:text="${blog.title}">你真的理解什么是财富自由吗？</a>
+                                        </div>
+                                    </div>
+                                    <!-- 内容 -->
+                                    <div class="row mt-2">
+                                        <div class="col blog-card-content">
+                                            这个作者很懒，什么简介都没有写...
+                                            <br>
+                                            <br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <!-- 博客信息 -->
+                                    <div class="row mt-2">
+                                        <div class="col-lg-10">
+                                            <!-- 头像 -->
+                                            <img th:src="@{${blog.user.avatar}}" class="rounded-circle" width="30"
+                                                 height="30">
+                                            <!-- 昵称 -->
+                                            <a href="#" class="blog-card-info-nick align-middle"
+                                               th:text="${blog.user.nickname}">JiaNanSt</a>
+                                            &nbsp;
+                                            <!-- 发布日期 -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-calendar-fill"
+                                                 viewBox="0 0 16 16">
+                                                <path
+                                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5z" />
+                                            </svg>
+                                            <span class="align-middle" th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">
+														2021-12-8
+													</span>
+                                            &nbsp;
+                                            <!-- 浏览量 -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                <path
+                                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                            </svg>
+                                            <span class="align-middle" th:text="${blog.views}">3000</span>
+                                        </div>
+                                        <div class="col-lg-2 text-right">
+													<span class="badge badge-primary align-middle"
+                                                          style="background-color: #4b5cc4;" th:text="${blog.type.name}">博客分类</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 列表脚 -->
+            <div class="row py-2 border-top">
+                <div class="col">
+                    <a th:href="@{/{page}(page=${blogsPage.prePage})}" th:if="${blogsPage.hasPreviousPage}"
+                       class="btn btn-outline-info">上一页</a>
+                </div>
+                <div class="col text-right">
+                    <a th:href="@{/{page}(page=${blogsPage.nextPage})}"
+                       th:if="${blogsPage.hasNextPage}" class="btn btn-outline-info">下一页</a>
+                </div>
+            </div>
+        </div>
+        <!-- 右侧导航视图 -->
+        <div class="col-lg-4 border-right">
+            <div class="row border-top d-lg-none"></div>
+            <!-- 分类导航 -->
+            <div class="row mt-4 justify-content-center">
+                <div class="col-10">
+                    <div class="card" style="width: 18rem;">
+                        <!-- 导航头 -->
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col text-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                         fill="currentColor" class="bi bi-grid-3x3-gap" viewBox="0 0 16 16">
+                                        <path
+                                                d="M4 2v2H2V2h2zm1 12v-2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 10v-2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 2v2H7V2h2zm5 0v2h-2V2h2zM4 7v2H2V7h2zm5 0v2H7V7h2zm5 0h-2v2h2V7zM4 12v2H2v-2h2zm5 0v2H7v-2h2zm5 0v2h-2v-2h2zM12 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z" />
+                                    </svg>
+                                    <span class="align-middle r-nav-card-title">分类</span>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="#" class="text-decoration-none text-info">
+                                        <span>more</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                             fill="currentColor" class="bi bi-chevron-double-right"
+                                             viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                  d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                                            <path fill-rule="evenodd"
+                                                  d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 导航体 -->
+                        <div class="list-group list-group-flush">
+                            <a href="#"
+                               class="list-group-item list-group-item-action
+                                d-flex align-items-center justify-content-between"
+                               th:each="type:${#session.getAttribute('topFourType')}">
+                                [[${type.name}]]
+                                <span class="badge badge-info badge-pill" th:text="${type.blogNum}">
+                                    20
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 标签导航 -->
+            <div class="row mt-4 justify-content-center">
+                <div class="col-10">
+                    <div class="card" style="width: 18rem;">
+                        <!-- 导航头 -->
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col text-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                         class="bi bi-tags" viewBox="0 0 16 16">
+                                        <path
+                                                d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z" />
+                                        <path
+                                                d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z" />
+                                    </svg>
+                                    <span class="align-middle r-nav-card-title">标签</span>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="#" class="text-decoration-none text-info">
+                                        <span>more</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                             fill="currentColor" class="bi bi-chevron-double-right"
+                                             viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                  d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                                            <path fill-rule="evenodd"
+                                                  d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 导航体 -->
+                        <div class="list-group list-group-flush">
+                            <a href="#"
+                               class="list-group-item list-group-item-action
+                                d-flex align-items-center justify-content-between"
+                               th:each="tag:${#session.getAttribute('topFourTag')}">
+                                [[${tag.name}]]
+                                <span class="badge badge-info badge-pill" th:text="${tag.blogNum}">20</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 推荐导航 -->
+            <div class="row mt-4 justify-content-center">
+                <div class="col-10">
+                    <div class="card" style="width: 18rem;">
+                        <!-- 导航头 -->
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col text-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
+                                        <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z"/>
+                                    </svg>
+                                    <span class="align-middle r-nav-card-title">最新推荐</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 导航体 -->
+                        <div class="list-group list-group-flush">
+                            <a href="#"
+                               class="list-group-item list-group-item-action
+                                d-flex align-items-center justify-content-between"
+                               th:each="latestBlog:${#session.getAttribute('latestFourBlog')}">
+                                [[${latestBlog.title}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 我的二维码 -->
+            <div class="row mt-3 mb-3 justify-content-center">
+                <div class="col-10">
+                    <!-- 文字分隔线 -->
+                    <div class="row no-gutters">
+                        <div class="col">
+                            <hr>
+                        </div>
+                        <div class="col text-center pt-1">
+                            <span style="font-weight: 600;">JiaNanStone</span>
+                        </div>
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                    <!-- 二维码 -->
+                    <div class="row justify-content-center">
+                        <div class="col-10 text-center">
+                            <img th:src="@{img/myWeChat.jpg}" class="img-thumbnail rounded" alt="WeChat"
+                                 width="150" height="150">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部footer -->
+<footer th:replace="bs_fragments::footer" class="bg-dark">
+    <div class="container">
+        <!-- 第一行 -->
+        <div class="row">
+            <!-- 微信二维码 -->
+            <div class="col-lg text-center my-3 my-lg-5">
+                <img src="img/myMicroChat.jpg" alt="WeChat" class="img-thumbnail rounded" height="120px;"
+                     width="120px;">
+            </div>
+            <!-- 分割线 -->
+            <div class="col-0 border border-secondary my-3 my-lg-5 d-none d-lg-block"></div>
+            <!-- 最新博客推荐 -->
+            <div class="col-lg text-center my-3 my-lg-5">
+                <h5 class="text-light">最新博客</h5>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">用户故事（User Story）</a></div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">用户故事（User Story）</a></div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">用户故事（User Story）</a></div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">用户故事（User Story）</a></div>
+                </div>
+            </div>
+            <!-- 分割线 -->
+            <div class="col-0 border border-secondary my-3 my-lg-5 d-none d-lg-block"></div>
+            <!-- 联系方式 -->
+            <div class="col-lg text-center my-3 my-lg-5">
+                <h5 class="text-light">联系我</h5>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">Email：JiaNanSt@qq.com</a></div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#" class="footer-link text-muted">QQ：1046280246</a></div>
+                </div>
+            </div>
+            <!-- 分割线 -->
+            <div class="col-0 border border-secondary my-3 my-lg-5 d-none d-lg-block"></div>
+            <!-- 博主信息 -->
+            <div class="col-lg-5 text-center my-3 my-lg-5">
+                <h5 class="text-light">Blog</h5>
+                <div class="row">
+                    <div class="col text-secondary">
+                        <p>这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这的人一些帮助...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 水平分割线 -->
+        <div class="row border border-secondary"></div>
+        <!-- 第二行 -->
+        <div class="row pt-lg-3 pb-lg-5">
+            <div class="col-lg text-center my-3">
+                <p class="text-secondary">Copyright © 2020-2021 StoneBlog Designed by JiaNanStone</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--/*/<th:block th:replace="bs_fragments::common_script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!--/*/</th:block>/*/-->
+</body>
+</html>

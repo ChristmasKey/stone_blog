@@ -3,6 +3,60 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.djn.dao.BlogDao">
+
+    <resultMap id="showBlogMap" type="Blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="firstImg" column="firstImg"/>
+        <result property="flag" column="flag"/>
+        <result property="views" column="views"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="commentable" column="commentable"/>
+        <result property="published" column="published"/>
+        <result property="recommend" column="recommend"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="typeId" column="type_id"/>
+        <result property="userId" column="user_id"/>
+        <association property="type" column="type_id" javaType="Type">
+            <id property="id" column="tId"/>
+            <result property="name" column="typeName"/>
+        </association>
+        <association property="user" column="user_id" javaType="User">
+            <id property="id" column="uId"/>
+            <result property="nickname" column="nickname"/>
+            <result property="avatar" column="avatar"/>
+        </association>
+    </resultMap>
+
+    <select id="queryBlogShowList" resultMap="showBlogMap">
+        select b.*, t.id tId, t.name typeName, u.id uId, u.nickname, u.avatar
+        from t_blog b
+        left join t_type t
+        on b.type_id = t.id
+        left join t_user u
+        on b.user_id = u.id
+    </select>
+
+    <select id="queryLatestFourBlog" resultType="Blog">
+        SELECT
+            id, title, content,
+            first_img, flag, views,
+            appreciation, share_statement,
+            commentable, published, recommend,
+            create_time, update_time,
+            type_id, user_id
+        from t_blog
+        WHERE recommend is TRUE
+        ORDER BY update_time DESC, id DESC LIMIT 4
+    </select>
+
+    <select id="queryTotalBlogNum" resultType="Integer">
+        select count(1) from t_blog
+    </select>
+
     <select id="queryAllBlogs" parameterType="Blog" resultType="Blog">
         select
                id, title, content,

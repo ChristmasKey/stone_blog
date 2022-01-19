@@ -24,6 +24,23 @@ public class BlogServiceImpl implements BlogService {
     private BlogDao blogDao;
 
     @Override
+    public PageInfo<Blog> queryBlogShowList(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize, "update_time desc, id desc");
+        List<Blog> blogs = blogDao.queryBlogShowList();
+        return new PageInfo<>(blogs);
+    }
+
+    @Override
+    public List<Blog> queryLatestFourBlog() {
+        return blogDao.queryLatestFourBlog();
+    }
+
+    @Override
+    public int getBlogTotalNum() {
+        return blogDao.queryTotalBlogNum();
+    }
+
+    @Override
     public List<Blog> getAllBlogs() {
         return blogDao.queryAllBlogs(new Blog());
     }

@@ -15,6 +15,9 @@ import java.util.List;
 @Repository
 public interface TypeDao {
 
+    //查询博客数最多的四个分类
+    List<Type> queryTopFourType();
+
     //查询所有分类
     List<Type> queryTypes();
 

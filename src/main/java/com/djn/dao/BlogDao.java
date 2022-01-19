@@ -15,6 +15,15 @@ import java.util.List;
 @Repository
 public interface BlogDao {
 
+    //查询博客展示列表
+    List<Blog> queryBlogShowList();
+
+    //查询四个最新推荐
+    List<Blog> queryLatestFourBlog();
+
+    //查询博客总数
+    int queryTotalBlogNum();
+
     //动态查询所有博客
     List<Blog> queryAllBlogs(Blog blog);
 

@@ -19,5 +19,6 @@ public class Type {
     @NotBlank(message = "分类名称不能为空")
     private String name;//名称
 
+    private Integer blogNum;//对应的博客数
     private List<Blog> blogs;//博客列表
 }

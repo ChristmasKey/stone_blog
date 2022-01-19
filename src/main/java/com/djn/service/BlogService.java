@@ -13,6 +13,12 @@ import java.util.List;
  */
 public interface BlogService {
 
+    PageInfo<Blog> queryBlogShowList(int pageNum, int pageSize);
+
+    List<Blog> queryLatestFourBlog();
+
+    int getBlogTotalNum();
+
     List<Blog> getAllBlogs();
 
     PageInfo<Blog> getAllBlogsByPage(int pageNum, int pageSize);

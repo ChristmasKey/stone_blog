@@ -19,6 +19,7 @@ public class Tag {
     @NotBlank(message = "标签名称不能为空")
     private String name;//名称
 
+    private Integer blogNum;//对应的博客数
     private List<Blog> blogs;//博客列表
     private List<User> users;//用户列表
 }

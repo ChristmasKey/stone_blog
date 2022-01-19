@@ -15,6 +15,9 @@ import java.util.List;
 @Repository
 public interface TagDao {
 
+    //查询博客数最多的四个标签
+    List<Tag> queryTopFourTag();
+
     //查询所有标签
     List<Tag> queryTags();
 

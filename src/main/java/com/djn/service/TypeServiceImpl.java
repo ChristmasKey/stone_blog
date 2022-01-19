@@ -22,6 +22,11 @@ public class TypeServiceImpl implements TypeService{
     private TypeDao typeDao;
 
     @Override
+    public List<Type> queryTopFourType() {
+        return typeDao.queryTopFourType();
+    }
+
+    @Override
     public List<Type> queryTypes() {
         return typeDao.queryTypes();
     }

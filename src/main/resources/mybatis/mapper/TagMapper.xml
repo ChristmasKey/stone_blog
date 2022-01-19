@@ -3,6 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.djn.dao.TagDao">
+
+    <select id="queryTopFourTag" resultType="Tag">
+        select t.id, t.`name`, count(bt.blog_id) blogNum
+        from t_tag t
+        inner join t_blog_tag bt on t.id = bt.tag_id
+        group by t.id
+        order by blogNum desc limit 4
+    </select>
+
     <select id="queryTags" resultType="Tag">
         select id, name from t_tag
     </select>

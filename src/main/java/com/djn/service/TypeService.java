@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface TypeService {
 
+    List<Type> queryTopFourType();
+
     List<Type> queryTypes();
 
     PageInfo<Type> findAllTypesByPage(int pageNum, int pageSize);
